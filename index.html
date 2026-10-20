@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>B2 English Challenge</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div id="stars-container"></div>
+<div class="moon"></div>
+<div class="earth"></div>
+
+<main class="page">
+
+  <!-- ============ VIEW 1: LANDING ============ -->
+  <section id="view-start" class="view active">
+    <div class="hero">
+      <div class="hero-badge">B2 English Challenge</div>
+      <h1>Test Your Knowledge</h1>
+      <p class="hero-sub">Upper-Intermediate Level Assessment</p>
+      <div class="meta-row">
+        <span>📝 <b>25</b> Questions</span>
+        <span>⭐ <b>25</b> Points</span>
+        <span>⏱ <b>15–20</b> min</span>
+      </div>
+    </div>
+
+    <div class="glass quote-card">
+      <div class="quote-text" id="start-quote-text"></div>
+      <div class="quote-author" id="start-quote-author"></div>
+    </div>
+
+    <div class="glass rules">
+      <h2>📖 How It Works</h2>
+      <ul class="rules-list">
+        <li><span class="r-ico">1</span>25 multiple-choice questions covering grammar, vocabulary, idioms, reading comprehension, and error correction.</li>
+        <li><span class="r-ico">2</span>Choose one answer per question — you'll see instant feedback with the correct answer if you miss it.</li>
+        <li><span class="r-ico">3</span>Press <b>Enter</b> or click <b>Next</b> to move forward. Use <b>Previous</b> to review your answers.</li>
+        <li><span class="r-ico">4</span>Your progress is saved automatically — you can navigate freely between questions.</li>
+        <li><span class="r-ico">5</span>At the end, see your score, accuracy, and a complete review of your mistakes.</li>
+        <li><span class="r-ico">6</span>You can restart anytime using the button at the bottom of the quiz.</li>
+      </ul>
+    </div>
+
+    <div class="start-wrap">
+      <button class="btn-primary" id="start-btn">
+        <span>Start the Quiz ✨</span>
+      </button>
+    </div>
+
+    <div class="footnote">
+      Classroom practice quiz — not an official CEFR certification test.
+    </div>
+  </section>
+
+  <!-- ============ VIEW 2: QUIZ ============ -->
+  <section id="view-quiz" class="view">
+    <div class="quote-bar">
+      <span id="quiz-quote-text"></span>
+      <span class="q-author" id="quiz-quote-author"></span>
+    </div>
+
+    <div class="glass quiz-hud">
+      <div class="hud-top">
+        <span class="hud-q">Question <b id="current-q">1</b> of <b id="total-q">25</b></span>
+        <span class="hud-acc">Accuracy: <b id="stat-accuracy">0%</b></span>
+      </div>
+      <div class="progress-track">
+        <div class="progress-fill" id="progress-fill"></div>
+      </div>
+      <div class="stats-row">
+        <span class="stat stat-correct">✓ <b id="stat-correct">0</b> Correct</span>
+        <span class="stat stat-wrong">✗ <b id="stat-wrong">0</b> Wrong</span>
+        <span class="stat">◐ <b id="stat-left">25</b> Left</span>
+        <span class="stat">∑ <b id="stat-total">25</b> Total</span>
+      </div>
+    </div>
+
+    <div class="glass question-card">
+      <div class="section-label" id="section-label">Section</div>
+      <div class="passage" id="passage" style="display:none;"></div>
+      <h2 class="question-text" id="question-text"></h2>
+      <div class="options" id="options"></div>
+      <div class="feedback" id="feedback"></div>
+    </div>
+
+    <div class="nav-row">
+      <button class="btn-secondary" id="btn-prev">← Previous</button>
+      <button class="btn-secondary" id="btn-next">Next →</button>
+    </div>
+
+    <div class="restart-row">
+      <button class="btn-restart" id="btn-restart">🔄 Restart Quiz</button>
+    </div>
+  </section>
+
+  <!-- ============ VIEW 3: RESULTS ============ -->
+  <section id="view-results" class="view">
+    <div class="results-hero">
+      <h1>Quiz Complete 🎉</h1>
+      <p style="color: var(--text-soft);">Here's how you did</p>
+    </div>
+
+    <div class="glass score-card">
+      <div class="score-big" id="score-big">0/25</div>
+      <div class="score-label">Final Score</div>
+      <div id="score-percent" class="score-percent">0%</div>
+    </div>
+
+    <div class="stats-grid">
+      <div class="stat-card correct">
+        <span class="ico">✓</span>
+        <b id="res-correct">0</b>
+        <small>Correct</small>
+      </div>
+      <div class="stat-card wrong">
+        <span class="ico">✗</span>
+        <b id="res-wrong">0</b>
+        <small>Wrong</small>
+      </div>
+      <div class="stat-card accuracy">
+        <span class="ico">🎯</span>
+        <b id="res-accuracy">0%</b>
+        <small>Accuracy</small>
+      </div>
+    </div>
+
+    <div class="glass feedback-box">
+      <div class="fb-title" id="fb-title"></div>
+      <p id="fb-text"></p>
+    </div>
+
+    <h2 class="section-title">📋 Review Your Mistakes</h2>
+    <div class="mistakes" id="mistakes-list"></div>
+
+    <div class="glass scoring-guide">
+      <b>Scoring guide:</b><br>
+      • <b>22–25</b> — Excellent understanding<br>
+      • <b>18–21</b> — Good understanding<br>
+      • <b>13–17</b> — Developing understanding<br>
+      • <b>0–12</b> — More practice recommended
+    </div>
+
+    <div class="results-restart">
+      <button class="btn-primary" id="btn-restart-results">
+        <span>🔄 Restart Quiz</span>
+      </button>
+    </div>
+  </section>
+
+</main>
+
+<script src="script.js"></script>
+</body>
+        </html>
